@@ -24,8 +24,17 @@ export const CarritoProvider = ({children}) => {
 
     const hayItemsEnCarrito = (carrito.length > 0)
 
+    const cantidadEnCarritoPorId = (id) => {
+		let producto = carrito.find((i) => i.id == id)
+
+		if (producto == null)
+			return 0
+		else 
+			return producto.cantidad
+	}
+
     return (
-        <CarritoContext.Provider value={{carrito, agregarItemACarrito, vaciarCarrito, totalCarrito, hayItemsEnCarrito}}>
+        <CarritoContext.Provider value={{carrito, agregarItemACarrito, vaciarCarrito, totalCarrito, hayItemsEnCarrito, cantidadEnCarritoPorId}}>
             {children}
         </CarritoContext.Provider>
     )
