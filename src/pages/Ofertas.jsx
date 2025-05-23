@@ -5,7 +5,7 @@ import Mensaje from "../assets/Mensaje";
 import ListaProductos from "../components/ListaProductos";
 import { CarritoContext } from "../context/CarritoContext";
 
-const Productos = (props) => {
+const Ofertas = (props) => {
   const [ isLoading, setIsLoading] = useState(true)
   const { agregarItemACarrito } = useContext(CarritoContext)
 
@@ -34,4 +34,4 @@ const Productos = (props) => {
   )
 }
 
-export default Productos
+export default Ofertas

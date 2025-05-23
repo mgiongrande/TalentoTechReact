@@ -11,10 +11,10 @@ const Login = () => {
   }
 
   return (
-    <Container className="mt-5" style={{maxWidth: 400}}>
+    <Container className="mt-5" style={{maxWidth: 600}}>
       <h2>Iniciar sesión</h2>
       <Form>
-        <Form.Group className="mb-3">
+        <Form.Group className="mt-5 mb-3">
           <Form.Label>Usuario</Form.Label>
           <Form.Control type="text" required/>
         </Form.Group>
@@ -22,7 +22,7 @@ const Login = () => {
           <Form.Label>Contraseña</Form.Label>
           <Form.Control type="password" required/>
         </Form.Group>
-        <Button variant="primary" onClick={handleLogin}><BoxArrowInLeft/> Entrar</Button>
+        <Button variant="outline-dark" onClick={handleLogin}><BoxArrowInLeft/> Entrar</Button>
       </Form>
     </Container>
   )

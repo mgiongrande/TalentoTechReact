@@ -1,14 +1,23 @@
 import { Container, Navbar } from "react-bootstrap"
 import { Envelope, Github, Linkedin } from "react-bootstrap-icons"
+import brand from '../assets/isotipo.png'
 
 const Footer = () => {
   return (
     <Navbar bg='dark' variant="dark" expand='lg'fixed='bottom'>
       <Container>
-        <Navbar.Brand>The Ultimate e-Commerce Site - Mariano Giongrande (2025)</Navbar.Brand>
-        <Navbar.Text><Github/> mgiongrande/TalentoTeachReact</Navbar.Text>
-        <Navbar.Text><Envelope/> mgiongrande@icloud.com</Navbar.Text>
-        <Navbar.Text><Linkedin/> @mgiongrande</Navbar.Text>
+        <Navbar.Brand>
+          <img 
+            src={brand}
+            height="30"
+            className="d-inline-block align-top"
+          />
+        <Navbar.Brand> Mariano Giongrande (2025)</Navbar.Brand>
+        </Navbar.Brand>
+          <Navbar.Text><Github/> mgiongrande</Navbar.Text>
+          <Navbar.Text><Envelope/> mgiongrande@icloud.com</Navbar.Text>
+          <Navbar.Text><Linkedin/> @mgiongrande</Navbar.Text>
+
       </Container>
     </Navbar>
   )

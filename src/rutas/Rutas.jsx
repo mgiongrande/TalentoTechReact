@@ -6,6 +6,7 @@ import Administracion from "../pages/Administración"
 import Login from "../pages/Login"
 import { parametros } from "../assets/params"
 import RutaProtegida from '../components/RutaProtegida'
+import Ofertas from "../pages/Ofertas"
 
 const Rutas = (props) => {
   return (
@@ -13,20 +14,18 @@ const Rutas = (props) => {
       <Route path='/' element={<Principal/>}/>
       <Route path='/productos' element={
         <Productos 
-          listaProductos={props.productosEnVenta} 
-          handleAddItemToCart={props.handleAddItemToCart}
           setProductos={props.setProductosEnVenta}
-          titulo={props.tituloProductos}
-          url={props.urlProductos}
+          titulo={parametros.tituloProductos}
+          url={parametros.urlProductos}
+          listaProductos={props.productosEnVenta}
         />}
       />
       <Route path='/ofertas' element={
-        <Productos 
-          listaProductos={props.productosEnOferta} 
-          handleAddItemToCart={props.handleAddItemToCart}
+        <Ofertas 
           setProductos={props.setProductosEnOferta}
-          titulo={props.tituloOfertas}
-          url={props.urlOfertas}
+          titulo={parametros.tituloOfertas}
+          url={parametros.urlOfertas}
+          listaProductos={props.productosEnOferta}
         />}
       />
       <Route path='/contacto' element={<Contacto/>}/>

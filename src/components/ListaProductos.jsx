@@ -10,7 +10,7 @@ const ListaProductos = (props) => {
 	))
 	
 	return (
-    <Row>
+    <Row className="g-2">
       {lista}
     </Row>
 	)

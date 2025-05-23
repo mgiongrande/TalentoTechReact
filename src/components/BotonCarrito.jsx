@@ -4,8 +4,8 @@ import { CartPlus, XSquare } from "react-bootstrap-icons"
 const BotonCarrito = (props) => {
 	return (
 		props.buttonSettings.condicion ? 
-			<Button onClick={props.buttonSettings.handleClick}><CartPlus/> {props.buttonSettings.leyenda1}</Button> : 
-			<Button disabled><XSquare/> {props.buttonSettings.leyenda2}</Button>
+			<Button variant="outline-dark" onClick={props.buttonSettings.handleClick}><CartPlus/> {props.buttonSettings.leyenda1}</Button> : 
+			<Button variant="secondary" disabled><XSquare/> {props.buttonSettings.leyenda2}</Button>
 	)
 }
 

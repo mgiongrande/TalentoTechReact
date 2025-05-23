@@ -21,8 +21,9 @@ const Contacto = () => {
 
   return (
     <Container className="mt-5">
+      <h2>Envíenos su consulta</h2>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="contactoNombre">
+        <Form.Group className="mt-5 mb-3" controlId="contactoNombre">
           <Form.Label>Nombre</Form.Label>
           <Form.Control type="text" required placeholder="Nombre" />
           <Form.Control.Feedback type="invalid">Ingrese su nombre</Form.Control.Feedback>
@@ -42,7 +43,7 @@ const Contacto = () => {
           <Form.Control as="textarea" rows={3} required />
           <Form.Control.Feedback type="invalid">Ingrese su mensaje</Form.Control.Feedback>
         </Form.Group>
-        <Button type="submit" ><EnvelopeCheck/> Enviar</Button>
+        <Button variant="outline-dark" type="submit" ><EnvelopeCheck/> Enviar</Button>
       </Form>
     </Container>
   )

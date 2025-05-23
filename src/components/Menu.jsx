@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Container, Navbar, Nav, Button, Offcanvas } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import Carrito from './Carrito'
 import { BoxArrowInLeft, BoxArrowLeft, Cart, CartFill, Envelope, House, Pencil, PiggyBank, Upc } from "react-bootstrap-icons"
+import { CarritoContext } from '../context/CarritoContext'
+import brand from '../assets/logotipo.png'
+
 
 const Menu = (props) => {
   const [show,setShow] = useState(false)
@@ -10,6 +13,7 @@ const Menu = (props) => {
 	const handleClose = () => setShow(false)
   const navigate = useNavigate()
   const isAuth = localStorage.getItem('auth') === 'true'
+  const { hayItemsEnCarrito } = useContext(CarritoContext)
   const cerrarSesion = () => {
     localStorage.removeItem('auth')
     navigate('/')
@@ -19,7 +23,13 @@ const Menu = (props) => {
     <>
       <Navbar bg='dark' variant="dark" expand='lg'sticky='top'>
         <Container>
-          <Navbar.Brand as={Link} to='/'>The Ultime e-Commerce Site</Navbar.Brand>
+          <Navbar.Brand as={Link} to='/'>
+            <img
+              src={brand} 
+              height="30"
+              className="d-inline-block align-top"
+            />
+          </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav className="me-auto">
@@ -43,9 +53,9 @@ const Menu = (props) => {
               )}
             </Nav>
           </Navbar.Collapse>
-          {props.lista.length > 0 ?
-            <Button onClick={handleShow}><CartFill/></Button> :
-            <Button onClick={handleShow}><Cart/></Button>
+          {hayItemsEnCarrito ?
+            <Button variant="outline-light" onClick={handleShow}><CartFill/></Button> :
+            <Button variant="outline-light" onClick={handleShow}><Cart/></Button>
           }
         </Container>
       </Navbar>
@@ -67,5 +77,3 @@ const Menu = (props) => {
 }
 
 export default Menu
-
-// <Button><Pencil/> Administración</Button>

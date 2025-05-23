@@ -1,19 +1,23 @@
 import ItemCarrito from "./ItemCarrito"
+import { CarritoContext } from "../context/CarritoContext"
+import { useContext } from "react"
+import { Button, Container } from "react-bootstrap"
 
-const Carrito = (props) => {
-	const calcularTotal = () => props.lista.reduce((sum,item) => sum + item.cantidad * item.precio, 0)
+const Carrito = () => {
+	const { carrito, totalCarrito, vaciarCarrito } = useContext(CarritoContext)
 	
 	return (
-		<aside>
-			<h1>Carrito..</h1>
-			{props.lista.length === 0 ? <h3>No hay productos</h3> : null}
-			<div>
-				{props.lista.map((item) => (
-					<ItemCarrito item={item} handleAddItemToCart={props.handleAddItemToCart} handleRemoveItemFromCart={props.handleRemoveItemFromCart} />
+		<Container>
+			{carrito.length === 0 ? <h3>Esto está MUY vacío</h3> : null}
+			{carrito.length > 0 ? <h2>Total: $ {totalCarrito}.-</h2> : null}
+      {carrito.length > 0 ? <Button variant="outline-dark" onClick={vaciarCarrito}>Variar carrito</Button> : null}
+			<div className="mt-2">
+				{carrito.map((item) => (
+					<ItemCarrito item={item}  />
 				))}
 			</div>
-			<h2>Total: {calcularTotal().toFixed(2)}</h2>
-		</aside>
+			
+		</Container>
 	)
 }
 

@@ -54,7 +54,7 @@ const Administracion = (props) => {
           <Form.Control type="number" required />
           <Form.Control.Feedback type="invalid">Ingrese el stock inicial del producto</Form.Control.Feedback>
         </Form.Group>
-        <Button type="submit" ><PlusSquare/> Agregar item</Button>
+        <Button variant="outline-dark" type="submit" ><PlusSquare/> Agregar item</Button>
       </Form>
     </Container>
   )
