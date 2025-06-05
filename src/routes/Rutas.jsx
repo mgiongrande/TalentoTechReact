@@ -5,8 +5,9 @@ import Contacto from "../pages/Contacto"
 import Administracion from "../pages/Administración"
 import Login from "../pages/Login"
 import { parametros } from "../assets/params"
-import RutaProtegida from '../components/RutaProtegida'
+import {RutaProtegida} from '../components/RutaProtegida'
 import Ofertas from "../pages/Ofertas"
+
 
 const Rutas = (props) => {
   return (
@@ -29,7 +30,12 @@ const Rutas = (props) => {
         />}
       />
       <Route path='/contacto' element={<Contacto/>}/>
-      <Route path='/administracion' element={<RutaProtegida><Administracion tipoProducto={parametros.tipoProductos}/></RutaProtegida>}/>
+      <Route 
+        path='/administracion' 
+        element={
+          <RutaProtegida>
+            <Administracion tipoProducto={parametros.tipoProductos} onAgregar={props.agregarProducto}/>
+          </RutaProtegida>}/>
       <Route path='/login' element={<Login/>} />
     </Routes>
   )

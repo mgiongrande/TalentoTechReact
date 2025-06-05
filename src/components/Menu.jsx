@@ -1,21 +1,23 @@
-import { useContext, useState } from 'react'
-import { Container, Navbar, Nav, Button, Offcanvas } from "react-bootstrap"
+import { useState } from 'react'
+import { Container, Navbar, Nav, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import Carrito from './Carrito'
 import { BoxArrowInLeft, BoxArrowLeft, Cart, CartFill, Envelope, House, Pencil, PiggyBank, Upc } from "react-bootstrap-icons"
-import { CarritoContext } from '../context/CarritoContext'
+import { useCarrito } from '../context/CarritoContext'
 import brand from '../assets/logotipo.png'
+import { useAuth } from "../context/AuthContext";
 
-
-const Menu = (props) => {
+const Menu = () => {
   const [show,setShow] = useState(false)
-	const handleShow = () => setShow(true)
+	const { user, logout } = useAuth()
+  const handleShow = () => setShow(true)
 	const handleClose = () => setShow(false)
   const navigate = useNavigate()
-  const isAuth = localStorage.getItem('auth') === 'true'
-  const { hayItemsEnCarrito } = useContext(CarritoContext)
+  
+  const { hayItemsEnCarrito } = useCarrito()
+  
   const cerrarSesion = () => {
-    localStorage.removeItem('auth')
+    logout()
     navigate('/')
   }
 
@@ -37,7 +39,7 @@ const Menu = (props) => {
               <Nav.Link as={Link} to='/productos'><Upc/>Productos</Nav.Link>
               <Nav.Link as={Link} to='/ofertas'><PiggyBank/> Ofertas</Nav.Link>
               <Nav.Link as={Link} to='/contacto'><Envelope/> Contacto</Nav.Link>
-              {isAuth && (
+              {user != null && (
                 <>
                   <Nav.Link as={Link} to='/administracion'><Pencil/> Administración</Nav.Link>
                 </>
@@ -46,7 +48,7 @@ const Menu = (props) => {
           </Navbar.Collapse>
           <Navbar.Collapse>
             <Nav className='me-auto'>
-              {!isAuth ? (
+              {user === null ? (
                 <Nav.Link as={Link} to='/login'><BoxArrowInLeft/> Login</Nav.Link>
               ) : (
                 <Button variant="outline-light" onClick={cerrarSesion}><BoxArrowLeft/> Cerrar Sesión</Button>
@@ -57,21 +59,9 @@ const Menu = (props) => {
             <Button variant="outline-light" onClick={handleShow}><CartFill/></Button> :
             <Button variant="outline-light" onClick={handleShow}><Cart/></Button>
           }
+          <Carrito show={show} handleClose={handleClose} />
         </Container>
       </Navbar>
-      
-      <Offcanvas show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Carrito...</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          <Carrito 	
-            lista={props.lista} 
-            handleAddItemToCart={props.handleAddItemToCart} 
-            handleRemoveItemFromCart={props.handleRemoveItemFromCart}
-          />
-        </Offcanvas.Body>
-		  </Offcanvas>
     </>
   )
 }

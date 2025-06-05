@@ -1,27 +1,30 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container,  } from "react-bootstrap"
 import Cargando from '../components/Cargando'
 import Mensaje from "../assets/Mensaje";
 import ListaProductos from "../components/ListaProductos";
-import { CarritoContext } from "../context/CarritoContext";
+import { useCarrito } from "../context/CarritoContext";
 
 const Productos = (props) => {
   const [ isLoading, setIsLoading] = useState(true)
-  const { agregarItemACarrito } = useContext(CarritoContext)
+  const { agregarItemACarrito } = useCarrito()
 
   useEffect(() => 
   {
-    fetch(props.url)
-    .then(res => res.json())
-    .then(data => {
-      props.setProductos(data)
-    })
-    .catch(err => {
-      Mensaje.errorCarga(err)
-    })
-    .finally(() => {
-      setIsLoading(false)
-    })
+    if (props.listaProductos.length === 0) {
+      fetch(props.url)
+      .then(res => res.json())
+      .then(data => {
+        props.setProductos(data)
+      })
+      .catch(err => {
+        Mensaje.errorCarga(err)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+    }
+    else setIsLoading(false)
   },[])
   
   if (isLoading) return <Cargando/>

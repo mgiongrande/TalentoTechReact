@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-export const CarritoContext = createContext()
+const CarritoContext = createContext()
 
 export const CarritoProvider = ({children}) => {
     const [carrito, setCarrito] = useState([])
@@ -18,6 +18,17 @@ export const CarritoProvider = ({children}) => {
         })
     }
 
+    const EliminarItemDeCarrito = (id) => {
+        
+        setCarrito((prev) => {
+            const cantidad = carrito.find(p => p.id === id).cantidad
+            if (cantidad > 1)
+                return prev.map((i) => i.id === id ? {...i, cantidad: i.cantidad - 1} : i)
+            else
+                return prev.filter(p => p.id !== id)
+        })
+    }
+
     const vaciarCarrito = () => setCarrito([])
 
     const totalCarrito = carrito.reduce((sum,item) => sum + item.cantidad * item.precio, 0).toFixed(2)
@@ -30,12 +41,23 @@ export const CarritoProvider = ({children}) => {
 		if (producto == null)
 			return 0
 		else 
-			return producto.cantidad
+			return Number(producto.cantidad)
 	}
 
     return (
-        <CarritoContext.Provider value={{carrito, agregarItemACarrito, vaciarCarrito, totalCarrito, hayItemsEnCarrito, cantidadEnCarritoPorId}}>
+        <CarritoContext.Provider 
+            value={{
+                carrito, 
+                agregarItemACarrito, 
+                vaciarCarrito, 
+                totalCarrito, 
+                hayItemsEnCarrito, 
+                cantidadEnCarritoPorId,
+                EliminarItemDeCarrito}}
+            >
             {children}
         </CarritoContext.Provider>
     )
 }
+
+export const useCarrito = () => useContext(CarritoContext)
