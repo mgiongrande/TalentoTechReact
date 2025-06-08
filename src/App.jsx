@@ -13,7 +13,7 @@ const App = () => {
   const [ isLoading, setIsLoading ] = useState(false)
 
   const agregarProducto = (producto) => {
-    if (producto.tipoProducto === 'Oferta') {
+    if (producto.esOferta) {
       const nuevo = {...producto, id: getIdMax(productosEnOferta, producto)}
       setProductosEnOferta([...productosEnOferta, nuevo])
     }
