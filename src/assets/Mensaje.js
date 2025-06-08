@@ -24,4 +24,13 @@ export default class Mensaje {
 			text: 'Puede cerrar esta ventana'
 		})
 	}
+
+	static showError(err) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Error en alta',
+			text: 'Revise los datos ingresados',
+			footer: err
+		})
+	}
 }

@@ -1,36 +1,37 @@
-import { Button, Container, Table, Image } from "react-bootstrap"
-import { useCarrito } from "../context/CarritoContext"
-import { Trash } from "react-bootstrap-icons"
+import { Button, Container, Image, Table } from "react-bootstrap"
+import { Pencil, Trash } from "react-bootstrap-icons"
 
-
-export const TablaCarrito = () => {
-  const { carrito, EliminarItemDeCarrito } = useCarrito()
+const TablaProducto = (props) => {
 
   return (
-    <Container>
+    <Container className="mx-auto mt-5">
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
             <th></th>
             <th>Producto</th>
-            <th align="center">Cantidad</th>
+            <th align="center">Stock</th>
             <th>Precio</th>
-            <th align="right">Total</th>
             <th></th>
           </tr>
         </thead>
-          {carrito.map((item) => (
+          {props.productos.map((item) => (
             <tbody key={item.id}>
               <tr>
                 <td valign="middle" align="center"><Image src={item.imagen} height='50' rounded/></td>
                 <td valign="middle">{item.nombre}</td>
                 <td valign="middle" align="center">{item.cantidad}</td>
                 <td valign="middle">$ {item.precio}</td>
-                <td valign="middle">$ {(item.cantidad * item.precio).toFixed(2)} </td>
                 <td valign="middle" align="center">
                   <Button 
+                    variant="outline-dark"
+                    onClick={() => props.onUpdate(item)}
+                  >
+                    <Pencil/>
+                  </Button>
+                  <Button className="mx-1" 
                     variant="outline-danger"
-                    onClick={() => EliminarItemDeCarrito(item.id)}
+                    onClick={() => props.onDelete(item)}
                   >
                     <Trash/>
                   </Button>
@@ -42,3 +43,5 @@ export const TablaCarrito = () => {
     </Container>
   )
 }
+
+export default TablaProducto

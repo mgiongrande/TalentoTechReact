@@ -2,7 +2,7 @@ import Principal from "../pages/Principal"
 import { Routes, Route} from 'react-router-dom'
 import Productos from "../pages/Productos"
 import Contacto from "../pages/Contacto"
-import Administracion from "../pages/Administración"
+import Administracion from "../pages/Administracion"
 import Login from "../pages/Login"
 import { parametros } from "../assets/params"
 import {RutaProtegida} from '../components/RutaProtegida'
@@ -19,6 +19,8 @@ const Rutas = (props) => {
           titulo={parametros.tituloProductos}
           url={parametros.urlProductos}
           listaProductos={props.productosEnVenta}
+          cargarProductos={props.cargarProductos}
+          isLoading={props.isLoading}
         />}
       />
       <Route path='/ofertas' element={
@@ -27,6 +29,8 @@ const Rutas = (props) => {
           titulo={parametros.tituloOfertas}
           url={parametros.urlOfertas}
           listaProductos={props.productosEnOferta}
+          cargarProductos={props.cargarOfertas}
+          isLoading={props.isLoading}
         />}
       />
       <Route path='/contacto' element={<Contacto/>}/>
@@ -34,7 +38,16 @@ const Rutas = (props) => {
         path='/administracion' 
         element={
           <RutaProtegida>
-            <Administracion tipoProducto={parametros.tipoProductos} onAgregar={props.agregarProducto}/>
+            <Administracion 
+              onAgregar={props.agregarProducto}
+              onUpdate={props.modificarProducto}
+              onDelete={props.borrarProducto}
+              productosEnVenta={props.productosEnVenta}
+              productosEnOferta={props.productosEnOferta}
+              cargarProductos={props.cargarProductos}
+              cargarOfertas={props.cargarOfertas}
+              isLoading={props.isLoading}
+            />
           </RutaProtegida>}/>
       <Route path='/login' element={<Login/>} />
     </Routes>

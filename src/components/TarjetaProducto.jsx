@@ -8,8 +8,7 @@ const TarjetaProducto = (props) => {
 
 	const handleClick = (e) => {
 		e.preventDefault()
-    console.log(props.producto)
-		if (cantidadEnCarritoPorId(props.producto.id) === props.producto.cantidad) {
+		if (cantidadEnCarritoPorId(props.producto.id) === Number(props.producto.cantidad)) {
 			Mensaje.mostrarSinStock()
 		} else {
 			props.handleAddItemToCart(e.target.producto)
