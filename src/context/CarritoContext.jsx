@@ -9,22 +9,16 @@ export const CarritoProvider = ({children}) => {
         setCarrito((prev) => {
             const estaEnCarrito = prev.find((i) => i.id == item.id)
             if (!estaEnCarrito) {
-                return [...prev, {...item, cantidad: 1}]
+                return [...prev, {...item, cantidad: item.seleccionadas}] //, cantidad: 1
             }
             else {
-                return prev.map((i) =>
-                i.id === item.id ? {...i, cantidad: i.cantidad + 1 } : i)
+                return[...prev]
             }
         })
     }
 
     const EliminarItemDeCarrito = (id) => {
-        
         setCarrito((prev) => {
-            const cantidad = carrito.find(p => p.id === id).cantidad
-            if (cantidad > 1)
-                return prev.map((i) => i.id === id ? {...i, cantidad: i.cantidad - 1} : i)
-            else
                 return prev.filter(p => p.id !== id)
         })
     }
@@ -32,6 +26,8 @@ export const CarritoProvider = ({children}) => {
     const vaciarCarrito = () => setCarrito([])
 
     const totalCarrito = carrito.reduce((sum,item) => sum + item.cantidad * item.precio, 0).toFixed(2)
+
+    const totalItemsEnCarrito = carrito.reduce((sum,item) => sum + item.cantidad,0)
 
     const hayItemsEnCarrito = (carrito.length > 0)
 
@@ -52,6 +48,7 @@ export const CarritoProvider = ({children}) => {
                 vaciarCarrito, 
                 totalCarrito, 
                 hayItemsEnCarrito, 
+                totalItemsEnCarrito,
                 cantidadEnCarritoPorId,
                 EliminarItemDeCarrito}}
             >

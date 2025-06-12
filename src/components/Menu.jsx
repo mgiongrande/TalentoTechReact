@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { Container, Navbar, Nav, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import Carrito from './Carrito'
-import { BoxArrowInLeft, BoxArrowLeft, Cart, CartFill, Envelope, House, Pencil, PiggyBank, Upc } from "react-bootstrap-icons"
-import { useCarrito } from '../context/CarritoContext'
+import { BoxArrowInLeft, BoxArrowLeft, Envelope, House, Pencil, PiggyBank, Upc } from "react-bootstrap-icons"
 import brand from '../assets/logotipo.png'
 import { useAuth } from "../context/AuthContext";
+import BotonCarritoMenu from './BotonCarritoMenu'
 
 const Menu = () => {
   const [show,setShow] = useState(false)
@@ -13,8 +13,6 @@ const Menu = () => {
   const handleShow = () => setShow(true)
 	const handleClose = () => setShow(false)
   const navigate = useNavigate()
-  
-  const { hayItemsEnCarrito } = useCarrito()
   
   const cerrarSesion = () => {
     logout()
@@ -55,10 +53,7 @@ const Menu = () => {
               )}
             </Nav>
           </Navbar.Collapse>
-          {hayItemsEnCarrito ?
-            <Button variant="outline-light" onClick={handleShow}><CartFill/></Button> :
-            <Button variant="outline-light" onClick={handleShow}><Cart/></Button>
-          }
+          <BotonCarritoMenu handleShow={handleShow}/>
           <Carrito show={show} handleClose={handleClose} />
         </Container>
       </Navbar>
