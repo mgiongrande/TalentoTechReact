@@ -30,7 +30,7 @@ const Menu = () => {
               className="d-inline-block align-top"
             />
           </Navbar.Brand>
-          <Navbar.Toggle />
+          <Navbar.Toggle  aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse>
             <Nav className="me-auto">
               <Nav.Link as={Link} to='/'><House/> Inicio</Nav.Link>

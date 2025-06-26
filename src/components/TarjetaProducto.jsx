@@ -31,8 +31,14 @@ const TarjetaProducto = (props) => {
 
 	return (
 		<Container>
-		<Card key={props.producto.id} style={{ width: '15rem' }} className="m-1"> 
-      <Card.Img variant="top" src={props.producto.imagen} alt={props.producto.nombre}/>
+		<Card key={props.producto.id} style={{ width: '15rem' }} className="h-100 d-flex flex-column mb-2"> 
+      <Card.Img 
+				variant="top" 
+				src={props.producto.imagen} 
+				alt={props.producto.nombre}
+				className="card-img-top img-fluid"
+				style={{height: '200px', objectFit: 'cover'}}
+			/>
       <Card.Header as="h5"><strong>{props.producto.nombre}</strong></Card.Header>
       <Card.Body>
         <Card.Text>
@@ -63,3 +69,5 @@ const TarjetaProducto = (props) => {
 }
 
 export default TarjetaProducto
+
+// card style={{ width: '15rem' }} 

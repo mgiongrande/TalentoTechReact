@@ -1,0 +1,33 @@
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.card-wrapper {
+  flex: 1 1 calc(20% - 1rem); /* 100% / 5 - gap */
+  max-width: calc(20% - 1rem);
+  box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+  .card-wrapper {
+    flex: 1 1 calc(33.33% - 1rem);
+    max-width: calc(33.33% - 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .card-wrapper {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}

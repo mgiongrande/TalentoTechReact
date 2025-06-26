@@ -16,13 +16,12 @@ const Carrito = (props) => {
 	return (
 		<Modal show={props.show} onHide={props.handleClose}>
 			<Modal.Header closeButton>
-        <Modal.Title>
+        		<Modal.Title>
 					{carrito.length === 0 ? <h3>Esto está MUY vacío</h3> : null}
 					{carrito.length > 0 ? <h2>Total: $ {totalCarrito}.-</h2> : null}
 				</Modal.Title>
-    	</Modal.Header>
+    		</Modal.Header>
 			<Container className="mt-2">
-
 				{carrito.length > 0 ? 
 				<div className="mt-2">
 					<TablaCarrito/>

@@ -1,10 +1,15 @@
 import { Button, Container, Image, Table } from "react-bootstrap"
 import { Pencil, Trash } from "react-bootstrap-icons"
+import Mensaje from "../assets/Mensaje"
 
 const TablaProducto = (props) => {
 
+  const handleDelete = (item) => {
+    Mensaje.showConsulta(() => props.onDelete(item))
+  }
+
   return (
-    <Container className="mx-auto mt-5">
+    <Container className="mx-auto mt-2 mb-4">
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
@@ -31,7 +36,7 @@ const TablaProducto = (props) => {
                   </Button>
                   <Button className="mx-1" 
                     variant="outline-danger"
-                    onClick={() => props.onDelete(item)}
+                    onClick={() => handleDelete(item)}
                   >
                     <Trash/>
                   </Button>

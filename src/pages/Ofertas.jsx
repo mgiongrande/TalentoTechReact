@@ -2,21 +2,21 @@ import { useEffect } from "react";
 import { Container,  } from "react-bootstrap"
 import Cargando from '../components/Cargando'
 import ListaProductos from "../components/ListaProductos";
-import { useCarrito } from "../context/CarritoContext";
+import { useOferta } from "../context/OfertaContext";
 
 const Ofertas = (props) => {
-  const { agregarItemACarrito } = useCarrito()
+  const { ofertas, isLoading, cargarOfertas } = useOferta()
 
   useEffect(() => {
-    props.cargarProductos()
+    cargarOfertas()
   },[])
   
-  if (props.isLoading) return <Cargando/>
+  if (isLoading) return <Cargando/>
 
   return (
     <Container className="mt-4 mb-5">
       <h2>{props.titulo}</h2>
-      <ListaProductos listaProductos={props.listaProductos} handleAddItemToCart={agregarItemACarrito} />
+      <ListaProductos listaProductos={ofertas}/>
     </Container>
   )
 }

@@ -6,7 +6,8 @@ export default class Mensaje {
 			icon: 'warning',
 			title: 'SIN STOCK',
 			text: 'No queda stock del producto elegido',
-		})}
+		})
+	}
 
 	static errorCarga(err){
 		Swal.fire({
@@ -33,4 +34,33 @@ export default class Mensaje {
 			footer: err
 		})
 	}
+
+	static showConsulta(evento) {
+		Swal.fire({
+			title: "Está seguro que desea eliminar el item?",
+			text: "Esto no se puede revertir.",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "SI",
+			cancelButtonText: "NO",
+			reverseButtons: true,
+			preConfirm: evento,
+			customClass: {
+				confirmButton: "btn btn-outline-success",
+				cancelButton: "btn btn-outline-danger"
+			},
+			//buttonsStyling: false,
+			}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire({
+					title: "Eliminado",
+					text: "El item ha sido eliminado.",
+					icon: "success"
+				});
+			}
+		});
+	}
+		
 }

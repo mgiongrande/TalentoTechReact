@@ -6,7 +6,7 @@ const ListaProductos = (props) => {
     <Container className="mt-4">
       <Row>
         {props.listaProductos.map(producto => (
-          <Col key={producto.id} style={{ flex: "0 0 20%", maxWidth: "20%" }} className="mb-2">
+          <Col key={producto.id} className="h-100 d-flex flex-column mb-2">
             <TarjetaProducto 
               producto = {producto} 
             />
@@ -18,3 +18,5 @@ const ListaProductos = (props) => {
 }
 
 export default ListaProductos
+
+// style={{ flex: "0 0 20%", maxWidth: "20%" }} className="mb-2"
