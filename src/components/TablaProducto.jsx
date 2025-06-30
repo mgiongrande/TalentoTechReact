@@ -23,7 +23,7 @@ const TablaProducto = (props) => {
           {props.productos.map((item) => (
             <tbody key={item.id}>
               <tr>
-                <td valign="middle" align="center"><Image src={item.imagen} height='50' rounded/></td>
+                <td valign="middle" align="center"><Image src={item.imagen} rounded style={{height: '50px', objectFit: 'cover'}} className="card-img-top img-fluid"/></td>
                 <td valign="middle">{item.nombre}</td>
                 <td valign="middle" align="center">{item.cantidad}</td>
                 <td valign="middle">$ {item.precio}</td>

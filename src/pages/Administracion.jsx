@@ -8,7 +8,7 @@ import { parametros } from "../assets/params"
 import { useProducto } from "../context/ProductoContext"
 import { useOferta } from "../context/OfertaContext"
 
-const Administracion = (props) => {
+const Administracion = () => {
   const { productos, cargarProductos, agregarProducto, modificarProducto, borrarProducto } = useProducto()
   const { ofertas, cargarOfertas, agregarOferta, modificarOferta, borrarOferta } = useOferta()
   const [ isLoading, setIsLoading ] = useState(false)

@@ -1,5 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap"
 import TarjetaProducto from "./TarjetaProducto"
+import '../css/ListaProductos.css'
 
 const ListaProductos = (props) => {
 	return (
@@ -18,5 +19,3 @@ const ListaProductos = (props) => {
 }
 
 export default ListaProductos
-
-// style={{ flex: "0 0 20%", maxWidth: "20%" }} className="mb-2"

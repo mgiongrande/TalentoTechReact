@@ -9,7 +9,8 @@ const TarjetaProducto = (props) => {
 	const [ cantidad, setCantidad] = useState(0)
 
 	const handleClick = (producto) => {
-		if (cantidadEnCarritoPorId(producto.id) === Number(producto.cantidad)) {
+		console.log(producto)
+		if (cantidad > Number(producto.cantidad)) {
 			Mensaje.mostrarSinStock()
 		} else {
 			producto.seleccionadas = Number(cantidad)
@@ -26,26 +27,27 @@ const TarjetaProducto = (props) => {
 		condicion: hayStock(),
 		handleClick: () => handleClick(props.producto),
 		leyenda1: 'Agregar',
-		leyenda2: 'SIN STOCK'
+		leyenda2: 'SIN STOCK',
+		cantidad: cantidad
 	}
 
 	return (
 		<Container>
 		<Card key={props.producto.id} style={{ width: '15rem' }} className="h-100 d-flex flex-column mb-2"> 
-      <Card.Img 
-				variant="top" 
-				src={props.producto.imagen} 
-				alt={props.producto.nombre}
-				className="card-img-top img-fluid"
-				style={{height: '200px', objectFit: 'cover'}}
-			/>
-      <Card.Header as="h5"><strong>{props.producto.nombre}</strong></Card.Header>
-      <Card.Body>
-        <Card.Text>
-        <strong>Precio:</strong> $ {props.producto.precio}.-  
-        </Card.Text>
-        <Card.Text className="text-muted">Disponibles: {props.producto.cantidad - cantidadEnCarritoPorId(props.producto.id)}</Card.Text>
-      </Card.Body>
+		<Card.Img 
+			variant="top" 
+			src={props.producto.imagen} 
+			alt={props.producto.nombre}
+			className="card-img-top img-fluid"
+			style={{height: '200px', objectFit: 'cover'}}
+		/>
+		<Card.Header as="h5"><strong>{props.producto.nombre}</strong></Card.Header>
+		<Card.Body>
+			<Card.Text>
+				<strong>Precio:</strong> $ {props.producto.precio}.-  
+			</Card.Text>
+			<Card.Text className="text-muted">Disponibles: {props.producto.cantidad - cantidadEnCarritoPorId(props.producto.id)}</Card.Text>
+		</Card.Body>
 			<Card.Footer>
 				<Row>
 					{hayStock() ? 
@@ -69,5 +71,3 @@ const TarjetaProducto = (props) => {
 }
 
 export default TarjetaProducto
-
-// card style={{ width: '15rem' }} 
