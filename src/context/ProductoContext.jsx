@@ -7,6 +7,7 @@ const ProductoContext = createContext()
 
 export const ProductoProvider = ({children}) => {
     const [ productos, setProductos ] = useState([])
+    const [ productosFiltrados, setProductosFiltrados ] = useState([])
     const [ isLoading, setIsLoading ] = useState(false)
 
     const cargarProductos = () => {
@@ -16,6 +17,7 @@ export const ProductoProvider = ({children}) => {
             .then(res => res.json())
             .then(data => {
                 setProductos(data ?? [])
+                setProductosFiltrados(data ?? [])
         })
         .catch(err => {
             Mensaje.errorCarga(err)
