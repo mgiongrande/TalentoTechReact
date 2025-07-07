@@ -35,7 +35,7 @@ const Footer = () => {
           </a>
 
           <a
-            href="https://linkedin.com/in/mariano-giongrande"
+            href="https://linkedin.com/in/mariano-giongrande-b593a68"
             className="text-white text-decoration-none d-flex align-items-center gap-1"
             target="_blank"
             rel="noopener noreferrer"
