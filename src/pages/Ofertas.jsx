@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap"
 import Cargando from '../components/Cargando'
 import ListaProductos from "../components/ListaProductos";
+import Paginador from '../components/Paginador'
 import { useOferta } from "../context/OfertaContext";
 import { parametros } from "../assets/params";
 import Buscador from "../components/Buscador";
@@ -9,8 +10,14 @@ import Buscador from "../components/Buscador";
 const Ofertas = () => {
   const { ofertas, isLoading, cargarOfertas } = useOferta()
   const [ filtro, setFiltro ] = useState('')
+  const [ paginaActual, setPaginaActual ] = useState(1)
 
-  const filtrados = ofertas.length > 0 ? ofertas.filter(p => p.nombre.toLowerCase().includes(filtro)) : []
+  const indiceUltimoProducto = paginaActual * parametros.productosPorPagina; 
+  const indicePrimerProducto = indiceUltimoProducto - parametros.productosPorPagina;
+  const productosVisibles = ofertas.slice(indicePrimerProducto, indiceUltimoProducto);
+  const totalPaginas = Math.ceil(ofertas.length / parametros.productosPorPagina);
+
+  const filtrados = productosVisibles.length > 0 ? productosVisibles.filter(p => p.nombre.toLowerCase().includes(filtro)) : []
 
   useEffect(() => {
     cargarOfertas()
@@ -35,6 +42,11 @@ const Ofertas = () => {
         <ListaProductos 
           listaProductos={filtrados}
         />
+      <Paginador 
+        totalPaginas={totalPaginas}
+        paginaActual={paginaActual}
+        cambiarPagina={setPaginaActual}
+      />
       </Row>
     </Container>
   )

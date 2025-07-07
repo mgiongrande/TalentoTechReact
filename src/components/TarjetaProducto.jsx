@@ -58,6 +58,7 @@ const TarjetaProducto = (props) => {
 							min={1}
 							value={cantidad}
 							onChange={handleChange}
+							className="mt-1 mb-1"
 						/>
 					</Col> : null }
 					<Col md='auto' className="justify-content-md-center">

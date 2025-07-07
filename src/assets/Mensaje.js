@@ -4,8 +4,8 @@ export default class Mensaje {
 	static mostrarSinStock() {
 		Swal.fire({
 			icon: 'warning',
-			title: 'SIN STOCK',
-			text: 'No queda stock del producto elegido',
+			title: 'STOCK INSUFICIENTE',
+			text: 'No hay suficiente stock para su pedido',
 		})
 	}
 

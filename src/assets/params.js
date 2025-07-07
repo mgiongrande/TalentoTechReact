@@ -1,9 +1,10 @@
 const parametros = 
 {
-    urlProductos: 'https://68167a0726a599ae7c37fa0f.mockapi.io/api/listaProductos/getProductos',
-    urlOfertas: 'https://68167a0726a599ae7c37fa0f.mockapi.io/api/listaProductos/getOfertas',
+    urlProductos: 'https://686c42d214219674dcc7a78f.mockapi.io/ultimateECommerceSite/productos',
+    urlOfertas: 'https://686c42d214219674dcc7a78f.mockapi.io/ultimateECommerceSite/ofertas',
     tituloProductos: 'Nuestros productos',
     tituloOfertas: 'Nuestras Ofertas',
+    productosPorPagina: 8,
     tipoProductos: [
         {
             id: 1,
