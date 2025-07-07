@@ -7,7 +7,7 @@ export const TablaCarrito = () => {
   const { carrito, EliminarItemDeCarrito } = useCarrito()
 
   return (
-    <Container>
+    <Container className="mx-auto mt-2 mb-4">
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
