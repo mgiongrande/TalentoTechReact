@@ -17,7 +17,7 @@ const Productos = () => {
   const productosVisibles = productos.slice(indicePrimerProducto, indiceUltimoProducto);
   const totalPaginas = Math.ceil(productos.length / parametros.productosPorPagina);
 
-  const filtrados = productosVisibles.length > 0 ? productosVisibles.filter(p => p.nombre.toLowerCase().includes(filtro)) : []
+  const filtrados = productos.length > 0 ? productos.filter(p => p.nombre.toLowerCase().includes(filtro)) : []
 
   useEffect(() => {
     cargarProductos()
@@ -40,14 +40,18 @@ const Productos = () => {
       </Row>
       <Row>
         <ListaProductos 
-          listaProductos={filtrados}
+          listaProductos={filtro.length > 0 ? filtrados : productosVisibles}
         />
       </Row>
-      <Paginador 
-        totalPaginas={totalPaginas}
-        paginaActual={paginaActual}
-        cambiarPagina={setPaginaActual}
-      />
+      <Row>
+        { filtro.length == 0 ? 
+          <Paginador 
+            totalPaginas={totalPaginas}
+            paginaActual={paginaActual}
+            cambiarPagina={setPaginaActual}
+        /> : null
+        }
+      </Row>
     </Container>
   )
 }
